@@ -58,3 +58,7 @@ Validator validator = ValidatorBuilder.newValidator()
 ```
 
 More information on the change and link to the new test repository may be found in the [announcment of the new repositories](https://anskaffelser.dev/service/announcement/2020-08-31-changed-urls-for-validator/).
+
+---
+### Note
+This implementation is based on Original version from anskaffelser/vefa-validator SNAPSHOT version 2.3.1-SNAPSHOT (https://github.com/anskaffelser/vefa-validator)
