@@ -1,20 +1,21 @@
 package no.difi.vefa.validator.declaration;
 
+import org.junit.Test;
+import org.junit.Before;
+import org.junit.Ignore;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
+
 import com.google.common.io.ByteStreams;
 import com.google.inject.Guice;
 import com.google.inject.Inject;
 import no.difi.vefa.validator.module.ValidatorModule;
 import no.difi.vefa.validator.util.DeclarationDetector;
 import no.difi.vefa.validator.util.DeclarationIdentifier;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Test;
 
 import java.io.BufferedInputStream;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
-
-import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertNotEquals;
 
 public class UblDeclarationTest {
 
@@ -24,7 +25,7 @@ public class UblDeclarationTest {
     @Inject
     private DeclarationDetector declarationDetector;
 
-    @BeforeClass
+    @Before
     public void beforeClass() {
         Guice.createInjector(new ValidatorModule()).injectMembers(this);
     }
@@ -108,7 +109,8 @@ public class UblDeclarationTest {
 
     }
 
-    @Test(enabled = false)
+    @Test
+    @Ignore
     public void invalidSchemaLocation() throws Exception {
         String sl = " schemaLocation=\"urn:oasis:names:specification:ubl:schema:xsd:Invoice-2 " +
                 "D:/MapForcewspc/MapForce.InvoiciaXML/Schemes/UBL 2.1/maindoc/UBL-Invoice-2.1.xsd\"";

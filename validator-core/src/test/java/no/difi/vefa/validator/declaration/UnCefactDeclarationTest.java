@@ -1,12 +1,13 @@
 package no.difi.vefa.validator.declaration;
 
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.assertEquals;
+
 import com.google.inject.Guice;
 import com.google.inject.Inject;
 import no.difi.vefa.validator.module.ValidatorModule;
 import no.difi.vefa.validator.util.DeclarationDetector;
-import org.testng.Assert;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Test;
 
 import java.io.BufferedInputStream;
 import java.io.InputStream;
@@ -16,7 +17,7 @@ public class UnCefactDeclarationTest {
     @Inject
     private DeclarationDetector declarationDetector;
 
-    @BeforeClass
+    @Before
     public void beforeClass() {
         Guice.createInjector(new ValidatorModule()).injectMembers(this);
     }
@@ -24,7 +25,7 @@ public class UnCefactDeclarationTest {
     @Test
     public void simplePeppol() throws Exception {
         InputStream inputStream =  new BufferedInputStream(getClass().getResourceAsStream("/documents/uncefact-peppol.xml"));
-        Assert.assertEquals(
+        assertEquals(
                 declarationDetector.detect(inputStream).getIdentifier().get(0),
                 "CrossIndustryInvoice" +
                         "::urn:fdc:peppol.eu:2017:poacc:billing:01:1.0" +
@@ -34,7 +35,7 @@ public class UnCefactDeclarationTest {
     @Test
     public void simpleTC434() throws Exception {
         InputStream inputStream =  new BufferedInputStream(getClass().getResourceAsStream("/documents/uncefact-tc434.xml"));
-        Assert.assertEquals(
+        assertEquals(
                 declarationDetector.detect(inputStream).getIdentifier().get(0),
                 "CrossIndustryInvoice::urn:cen.eu:en16931:2017");
     }
@@ -43,7 +44,7 @@ public class UnCefactDeclarationTest {
     @Test
     public void simpleSimple() throws Exception {
         InputStream inputStream = getClass().getResourceAsStream("/documents/uncefact-simple.xml");
-        Assert.assertEquals(
+        assertEquals(
                 declarationDetector.detect(inputStream).getIdentifier().get(0),
                 "urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100::CrossIndustryInvoice");
     }

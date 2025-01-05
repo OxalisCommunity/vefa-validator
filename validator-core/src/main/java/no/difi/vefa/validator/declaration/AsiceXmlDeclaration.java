@@ -3,8 +3,9 @@ package no.difi.vefa.validator.declaration;
 import com.google.common.base.CharMatcher;
 import com.google.common.io.BaseEncoding;
 import com.google.common.io.ByteStreams;
-import no.difi.asic.AsicReader;
-import no.difi.asic.AsicReaderFactory;
+import com.helger.asic.AsicReaderFactory;
+import com.helger.asic.IAsicReader;
+
 import no.difi.vefa.validator.annotation.Type;
 import no.difi.vefa.validator.api.CachedFile;
 import no.difi.vefa.validator.api.DeclarationWithChildren;
@@ -67,7 +68,7 @@ public class AsiceXmlDeclaration extends AbstractXmlDeclaration
     @Override
     public Iterable<CachedFile> children(InputStream inputStream) {
         try {
-            AsicReader asicReader = AsicReaderFactory.newFactory().open(inputStream);
+            IAsicReader asicReader = AsicReaderFactory.newFactory ().open (inputStream);
             List<CachedFile> files = new ArrayList<>();
 
             String filename;

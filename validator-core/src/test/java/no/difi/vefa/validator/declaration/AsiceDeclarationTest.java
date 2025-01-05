@@ -1,9 +1,11 @@
 package no.difi.vefa.validator.declaration;
 
+import org.junit.Test;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+
 import com.google.common.io.ByteStreams;
-import no.difi.asic.AsicVerifierFactory;
-import org.testng.Assert;
-import org.testng.annotations.Test;
+import com.helger.asic.AsicVerifierFactory;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -24,7 +26,7 @@ public class AsiceDeclarationTest {
             ByteStreams.copy(inputStream, byteArrayOutputStream);
         }
 
-        Assert.assertTrue(declaration.verify(byteArrayOutputStream.toByteArray(), null));
+        assertTrue(declaration.verify(byteArrayOutputStream.toByteArray(), null));
     }
 
     @Test
@@ -35,7 +37,7 @@ public class AsiceDeclarationTest {
             ByteStreams.copy(inputStream, byteArrayOutputStream);
         }
 
-        Assert.assertFalse(declaration.verify(byteArrayOutputStream.toByteArray(), null));
+        assertFalse(declaration.verify(byteArrayOutputStream.toByteArray(), null));
     }
 
     @Test
@@ -46,7 +48,7 @@ public class AsiceDeclarationTest {
             ByteStreams.copy(inputStream, byteArrayOutputStream);
         }
 
-        Assert.assertTrue(xmlDeclaration.verify(byteArrayOutputStream.toByteArray(),
+        assertTrue(xmlDeclaration.verify(byteArrayOutputStream.toByteArray(),
                 Collections.singletonList("urn:etsi.org:specification:02918:v1.2.1::asic")));
 
         ByteArrayOutputStream converted = new ByteArrayOutputStream();

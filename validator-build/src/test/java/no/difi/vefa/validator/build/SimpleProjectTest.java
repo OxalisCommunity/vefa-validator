@@ -1,9 +1,11 @@
 package no.difi.vefa.validator.build;
 
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
 import com.google.inject.Inject;
-import org.testng.Assert;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Test;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -14,7 +16,7 @@ public class SimpleProjectTest {
     @Inject
     private Cli cli;
 
-    @BeforeClass
+    @Before
     public void before() {
         Cli.getInjector().injectMembers(this);
     }
@@ -24,10 +26,8 @@ public class SimpleProjectTest {
         Path path = Paths.get(getClass().getResource("/project/simple").toURI());
 
         // Assert.assertFalse(Files.exists(path.resolve("target")));
-
-        Assert.assertEquals(cli.perform(path.toString()), 0);
-
-        Assert.assertTrue(Files.exists(path.resolve("target")));
+        assertEquals(cli.perform(path.toString()), 0);
+        assertTrue(Files.exists(path.resolve("target")));
     }
 
     @Test
@@ -35,9 +35,7 @@ public class SimpleProjectTest {
         Path path = Paths.get(getClass().getResource("/project/simple").toURI());
 
         // Assert.assertFalse(Files.exists(path.resolve("target")));
-
-        Assert.assertEquals(cli.perform("-test", "-x", path.toString()), 0);
-
-        Assert.assertTrue(Files.exists(path.resolve("target")));
+        assertEquals(cli.perform("-test", "-x", path.toString()), 0);
+        assertTrue(Files.exists(path.resolve("target")));
     }
 }

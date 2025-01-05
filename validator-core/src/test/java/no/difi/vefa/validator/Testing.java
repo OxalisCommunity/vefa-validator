@@ -1,5 +1,10 @@
 package no.difi.vefa.validator;
 
+import org.junit.Test;
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
+import static org.junit.Assert.assertEquals;
+
 import lombok.extern.slf4j.Slf4j;
 import no.difi.vefa.validator.api.Validation;
 import no.difi.vefa.validator.properties.SimpleProperties;
@@ -7,23 +12,21 @@ import no.difi.vefa.validator.source.ClasspathSource;
 import no.difi.xsd.vefa.validator._1.AssertionType;
 import no.difi.xsd.vefa.validator._1.FlagType;
 import no.difi.xsd.vefa.validator._1.SectionType;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Test;
 
-import java.io.BufferedInputStream;
 import java.io.FileOutputStream;
 import java.io.OutputStream;
 
-import static org.testng.Assert.assertEquals;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @Slf4j
 public class Testing {
+    private static final Logger log = LoggerFactory.getLogger (Testing.class);
 
     private static Validator validator;
 
     @BeforeClass
-    public void beforeClass() throws Exception {
+    public static void beforeClass() throws Exception {
         validator = ValidatorBuilder
                 .newValidator()
                 .setProperties(new SimpleProperties()
@@ -33,7 +36,7 @@ public class Testing {
     }
 
     @AfterClass
-    public void afterClass() throws Exception {
+    public static void afterClass() throws Exception {
         validator.close();
         validator = null;
     }

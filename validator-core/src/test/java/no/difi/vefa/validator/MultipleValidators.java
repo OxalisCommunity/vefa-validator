@@ -1,38 +1,37 @@
 package no.difi.vefa.validator;
 
+import org.junit.Test;
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
+import static org.junit.Assert.assertNotNull;
+
 import no.difi.vefa.validator.source.ClasspathSource;
-import org.testng.Assert;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Test;
 
 /**
  * Testing opening and closing two validators in row.
  */
 public class MultipleValidators {
 
-    private Validator validator;
+    private static Validator validator;
 
     @BeforeClass
-    public void setUp() {
-        validator = ValidatorBuilder.newValidator()
-                .setSource(new ClasspathSource("/rules/"))
-                .build();
+    public static void setUp() {
+        validator = ValidatorBuilder.newValidator().setSource(new ClasspathSource("/rules/")).build();
     }
 
     @AfterClass
-    public void tearDown() {
+    public static void tearDown() {
         validator.close();
     }
 
     @Test
     public void test1() {
-        Assert.assertNotNull(validator);
+        assertNotNull(validator);
     }
 
     @Test
     public void test2() {
-        Assert.assertNotNull(validator);
+        assertNotNull(validator);
     }
 
 }

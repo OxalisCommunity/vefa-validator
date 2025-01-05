@@ -1,26 +1,28 @@
 package no.difi.vefa.validator.declaration;
 
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+
 import com.google.inject.Guice;
 import com.google.inject.Inject;
 import no.difi.vefa.validator.api.CachedFile;
 import no.difi.vefa.validator.module.ValidatorModule;
 import no.difi.vefa.validator.util.DeclarationDetector;
 import no.difi.vefa.validator.util.DeclarationIdentifier;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Test;
 
 import java.io.BufferedInputStream;
 import java.io.InputStream;
 import java.util.Iterator;
-
-import static org.testng.Assert.*;
 
 public class SbdhDeclarationTest {
 
     @Inject
     private DeclarationDetector declarationDetector;
 
-    @BeforeClass
+    @Before
     public void beforeClass() {
         Guice.createInjector(new ValidatorModule()).injectMembers(this);
     }

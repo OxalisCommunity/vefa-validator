@@ -1,9 +1,11 @@
 package no.difi.vefa.validator.build.model;
 
-import no.difi.vefa.validator.api.Validation;
+import org.junit.Test;
 import org.mockito.Mockito;
-import org.testng.Assert;
-import org.testng.annotations.Test;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+
+import no.difi.vefa.validator.api.Validation;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -16,19 +18,19 @@ public class BuildTest {
         Build build = new Build(path);
         build.setSetting("name", "Test");
 
-        Assert.assertNotNull(build.getConfigurations());
-        Assert.assertEquals(build.getConfigurations().getName(), "Test");
+        assertNotNull(build.getConfigurations());
+        assertEquals(build.getConfigurations().getName(), "Test");
 
-        Assert.assertEquals(build.getProjectPath(), path);
-        Assert.assertEquals(build.getTargetFolder(), path.resolve("target"));
+        assertEquals(build.getProjectPath(), path);
+        assertEquals(build.getTargetFolder(), path.resolve("target"));
 
-        Assert.assertEquals(build.getTestFolders().size(), 0);
+        assertEquals(build.getTestFolders().size(), 0);
         build.addTestFolder(path.resolve("testFolder").toFile());
-        Assert.assertEquals(build.getTestFolders().size(), 1);
-        Assert.assertEquals(build.getTestFolders().get(0), path.resolve("testFolder"));
+        assertEquals(build.getTestFolders().size(), 1);
+        assertEquals(build.getTestFolders().get(0), path.resolve("testFolder"));
 
-        Assert.assertEquals(build.getTestValidations().size(), 0);
+        assertEquals(build.getTestValidations().size(), 0);
         build.addTestValidation(Mockito.mock(Validation.class));
-        Assert.assertEquals(build.getTestValidations().size(), 1);
+        assertEquals(build.getTestValidations().size(), 1);
     }
 }

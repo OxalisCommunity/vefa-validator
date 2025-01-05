@@ -1,13 +1,14 @@
 package no.difi.vefa.validator.source;
 
 import lombok.extern.slf4j.Slf4j;
-import no.difi.asic.AsicReader;
+import com.helger.asic.IAsicReader;
+
 import no.difi.vefa.validator.api.Properties;
 import no.difi.vefa.validator.lang.ValidatorException;
 import no.difi.xsd.vefa.validator._1.ArtifactType;
 import no.difi.xsd.vefa.validator._1.Artifacts;
 
-import javax.xml.bind.Unmarshaller;
+import jakarta.xml.bind.Unmarshaller;
 import java.net.URI;
 import java.util.List;
 
@@ -27,7 +28,7 @@ class RepositorySourceInstance extends AbstractSourceInstance {
                 for (ArtifactType artifact : artifactsType.getArtifact()) {
                     URI artifactUri = rootUri.resolve(artifact.getFilename());
                     log.info(String.format("Fetching %s", artifactUri));
-                    try (AsicReader asicReader = ASIC_READER_FACTORY.open(artifactUri.toURL().openStream())) {
+                    try (IAsicReader asicReader = ASIC_READER_FACTORY.open (artifactUri.toURL ().openStream ())) {
                         unpackContainer(asicReader, artifact.getFilename());
                     }
                 }

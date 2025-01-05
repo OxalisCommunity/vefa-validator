@@ -1,33 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <parent>
-        <artifactId>validator-parent</artifactId>
-        <groupId>no.difi.vefa</groupId>
-        <version>2.3.1-SNAPSHOT</version>
-    </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>validator-api</artifactId>
+    <parent>
+        <artifactId>vefa-validator</artifactId>
+        <groupId>network.oxalis.vefa</groupId>
+        <version>2.3.1-SNAPSHOT</version>
+    </parent>
 
+    <artifactId>validator-api</artifactId>
     <name>VEFA Validator :: API</name>
-    <description>API for extensions to validator.</description>
-    <url>https://github.com/anskaffelser/vefa-validator</url>
+    <description>API for extensions to validator</description>
+    <url>https://github.com/OxalisCommunity/vefa-validator</url>
 
     <scm>
         <tag>HEAD</tag>
-        <url>https://github.com/anskaffelser/vefa-validator</url>
-        <connection>scm:git:https://github.com/anskaffelser/vefa-validator.git</connection>
-        <developerConnection>scm:git:git@github.com:anskaffelser/vefa-validator.git</developerConnection>
+        <url>https://github.com/OxalisCommunity/vefa-validator</url>
+        <connection>scm:git:https://github.com/OxalisCommunity/vefa-validator.git</connection>
+        <developerConnection>scm:git:git@github.com:OxalisCommunity/vefa-validator.git</developerConnection>
     </scm>
 
     <issueManagement>
-        <url>https://github.com/anskaffelser/vefa-validator/issues</url>
+        <url>https://github.com/OxalisCommunity/vefa-validator/issues</url>
         <system>GitHub Issues</system>
     </issueManagement>
 
     <organization>
-        <name>The Norwegian Agency for Public and Financial Management (DFØ)</name>
-        <url>http://www.dfo.no/</url>
+        <name>NorStella</name>
+        <url>https://en.norstella.no/</url>
     </organization>
 
     <developers>
@@ -37,6 +37,14 @@
             <organization>DFØ</organization>
             <roles>
                 <role>Author</role>
+            </roles>
+        </developer>
+        <developer>
+            <name>Arun Kumar</name>
+            <email>arun.kaundal@gmail.com</email>
+            <organization>Norstella</organization>
+            <roles>
+                <role>Technical Expert</role>
             </roles>
         </developer>
     </developers>
@@ -61,8 +69,13 @@
 
     <dependencies>
         <dependency>
-            <groupId>javax.xml.bind</groupId>
-            <artifactId>jaxb-api</artifactId>
+            <groupId>jakarta.xml.bind</groupId>
+            <artifactId>jakarta.xml.bind-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 
@@ -73,30 +86,29 @@
                 <artifactId>jacoco-maven-plugin</artifactId>
             </plugin>
             <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>jaxb2-maven-plugin</artifactId>
-                <version>1.6</version>
+                <groupId>org.jvnet.jaxb</groupId>
+                <artifactId>jaxb-maven-plugin</artifactId>
                 <executions>
                     <execution>
-                        <id>xjc</id>
                         <goals>
-                            <goal>xjc</goal>
+                            <goal>generate</goal>
                         </goals>
                     </execution>
                 </executions>
                 <configuration>
-                    <encoding>UTF-8</encoding>
-                    <target>2.1</target>
+                    <schemaDirectory>${basedir}/src/main/xsd</schemaDirectory>
+                    <schemaIncludes>
+                        <include>*.xsd</include>
+                    </schemaIncludes>
+                    <strict>true</strict>
+                    <extension>false</extension>
+                    <verbose>true</verbose>
+                    <removeOldOutput>true</removeOldOutput>
+                    <args>
+                        <arg>-no-header</arg>
+                    </args>
                 </configuration>
-                <dependencies>
-                    <dependency>
-                        <groupId>com.sun.activation</groupId>
-                        <artifactId>javax.activation</artifactId>
-                        <version>1.2.0</version>
-                    </dependency>
-                </dependencies>
             </plugin>
         </plugins>
     </build>
-
 </project>

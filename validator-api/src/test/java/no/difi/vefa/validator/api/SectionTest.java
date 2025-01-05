@@ -1,10 +1,11 @@
 package no.difi.vefa.validator.api;
 
+import org.junit.Test;
+import static org.junit.Assert.assertEquals;
+import org.mockito.Mockito;
+
 import no.difi.xsd.vefa.validator._1.AssertionType;
 import no.difi.xsd.vefa.validator._1.FlagType;
-import org.mockito.Mockito;
-import org.testng.Assert;
-import org.testng.annotations.Test;
 
 public class SectionTest {
 
@@ -15,8 +16,8 @@ public class SectionTest {
 
         section.add("TEST", "Simple test", null);
 
-        Assert.assertEquals(section.getAssertion().size(), 0);
-        Assert.assertEquals(section.getFlag(), FlagType.OK);
+        assertEquals(section.getAssertion().size(), 0);
+        assertEquals(section.getFlag(), FlagType.OK);
 
         Mockito.verify(flagFilterer).filterFlag(Mockito.any(AssertionType.class));
         Mockito.verifyNoMoreInteractions(flagFilterer);
@@ -29,8 +30,8 @@ public class SectionTest {
 
         section.add("TEST", "Simple test", FlagType.OK);
 
-        Assert.assertEquals(section.getAssertion().size(), 1);
-        Assert.assertEquals(section.getFlag(), FlagType.OK);
+        assertEquals(section.getAssertion().size(), 1);
+        assertEquals(section.getFlag(), FlagType.OK);
 
         Mockito.verify(flagFilterer).filterFlag(Mockito.any(AssertionType.class));
         Mockito.verifyNoMoreInteractions(flagFilterer);
@@ -43,8 +44,8 @@ public class SectionTest {
 
         section.add("TEST", "Simple test", FlagType.WARNING);
 
-        Assert.assertEquals(section.getAssertion().size(), 1);
-        Assert.assertEquals(section.getFlag(), FlagType.WARNING);
+       assertEquals(section.getAssertion().size(), 1);
+       assertEquals(section.getFlag(), FlagType.WARNING);
 
         Mockito.verify(flagFilterer).filterFlag(Mockito.any(AssertionType.class));
         Mockito.verifyNoMoreInteractions(flagFilterer);

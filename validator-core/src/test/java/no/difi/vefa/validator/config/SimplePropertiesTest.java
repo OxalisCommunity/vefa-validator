@@ -1,10 +1,12 @@
 package no.difi.vefa.validator.config;
 
-import static org.testng.Assert.*;
+import org.junit.Test;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import no.difi.vefa.validator.api.Properties;
 import no.difi.vefa.validator.properties.SimpleProperties;
-import org.testng.annotations.Test;
 
 public class SimplePropertiesTest {
 

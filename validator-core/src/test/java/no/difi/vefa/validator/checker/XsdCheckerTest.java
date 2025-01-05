@@ -1,11 +1,11 @@
 package no.difi.vefa.validator.checker;
 
+import org.junit.Test;
 import no.difi.vefa.validator.lang.ValidatorException;
-import org.testng.annotations.Test;
 
 public class XsdCheckerTest {
 
-    @Test(expectedExceptions = ValidatorException.class)
+    @Test(expected = ValidatorException.class)
     public void simpleTriggerException() throws Exception {
         new XsdCheckerFactory().prepare(null, null);
     }

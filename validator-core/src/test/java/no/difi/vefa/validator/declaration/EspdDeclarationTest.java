@@ -1,25 +1,25 @@
 package no.difi.vefa.validator.declaration;
 
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.assertEquals;
+
 import com.google.inject.Guice;
 import com.google.inject.Inject;
 import no.difi.vefa.validator.module.ValidatorModule;
 import no.difi.vefa.validator.util.DeclarationDetector;
 import no.difi.vefa.validator.util.DeclarationIdentifier;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Test;
 
 import java.io.BufferedInputStream;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
-
-import static org.testng.Assert.assertEquals;
 
 public class EspdDeclarationTest {
 
     @Inject
     private DeclarationDetector declarationDetector;
 
-    @BeforeClass
+    @Before
     public void beforeClass() {
         Guice.createInjector(new ValidatorModule()).injectMembers(this);
     }

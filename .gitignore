@@ -1,6 +1,13 @@
-/.idea
-target
+# Ignore these files
 *.iml
+*.ipr
+*.iws
+.idea/
+target/
+.settings
+.project
+.classpath
+/logs
 /workspace
 /validator.properties
 *.html
