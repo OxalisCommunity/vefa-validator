@@ -102,7 +102,7 @@ jobs:
           push: ${{ github.event_name != 'pull_request' }}
           sbom: true
           provenance: mode=max
-          tags: ${{ env.IMAGE_NAME }}:${{ env.PROJECT_VERSION }}
+#          tags: ${{ env.IMAGE_NAME }}:${{ env.PROJECT_VERSION }}
           labels: ${{ steps.meta.outputs.labels }}
 #          annotations: ${{ steps.meta.outputs.annotations }}
           outputs: type=image,"name=${{ env.IMAGE_NAME }}",push-by-digest=true,name-canonical=true,push=true
