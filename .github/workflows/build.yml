@@ -80,31 +80,31 @@ jobs:
         with:
           call: check
 
-      - name: Build and export to Docker
+#      - name: Build and export to Docker
+#        uses: docker/build-push-action@v6
+#        with:
+##          load: true
+#          tags: ${{ env.IMAGE_NAME }}:${{ env.PROJECT_VERSION }}
+#
+#      - name: Test
+#        run: |
+#          docker run --rm ${{ env.IMAGE_NAME }}:${{ env.PROJECT_VERSION }}
+
+      - name: Build and push by digest
+        id: build
         uses: docker/build-push-action@v6
         with:
-          load: true
-          tags: ${{ env.IMAGE_NAME }}:${{ env.PROJECT_VERSION }}
-
-      - name: Test
-        run: |
-          docker run --rm ${{ env.IMAGE_NAME }}:${{ env.PROJECT_VERSION }}   
-
-      - name: Build and push
-        id: docker_build
-        uses: docker/build-push-action@v6
-        with:
-          builder: ${{ steps.buildx.outputs.name }}
+#          builder: ${{ steps.buildx.outputs.name }}
           context: ./
           file: ./Dockerfile
           platforms: ${{ matrix.platform }}
-          load: true # load multi-platform images
+#          load: true # load multi-platform images
           push: ${{ github.event_name != 'pull_request' }}
           sbom: true
           provenance: mode=max
           tags: ${{ env.IMAGE_NAME }}:${{ env.PROJECT_VERSION }}
           labels: ${{ steps.meta.outputs.labels }}
-          annotations: ${{ steps.meta.outputs.annotations }}
+#          annotations: ${{ steps.meta.outputs.annotations }}
           outputs: type=image,"name=${{ env.IMAGE_NAME }}",push-by-digest=true,name-canonical=true,push=true
 
       - name: Export digest
