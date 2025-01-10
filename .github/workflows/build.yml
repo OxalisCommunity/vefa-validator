@@ -80,31 +80,17 @@ jobs:
         with:
           call: check
 
-#      - name: Build and export to Docker
-#        uses: docker/build-push-action@v6
-#        with:
-##          load: true
-#          tags: ${{ env.IMAGE_NAME }}:${{ env.PROJECT_VERSION }}
-#
-#      - name: Test
-#        run: |
-#          docker run --rm ${{ env.IMAGE_NAME }}:${{ env.PROJECT_VERSION }}
-
       - name: Build and push by digest
         id: build
         uses: docker/build-push-action@v6
         with:
-#          builder: ${{ steps.buildx.outputs.name }}
           context: ./
           file: ./Dockerfile
           platforms: ${{ matrix.platform }}
-#          load: true # load multi-platform images
           push: ${{ github.event_name != 'pull_request' }}
           sbom: true
           provenance: mode=max
-#          tags: ${{ env.IMAGE_NAME }}:${{ env.PROJECT_VERSION }}
           labels: ${{ steps.meta.outputs.labels }}
-#          annotations: ${{ steps.meta.outputs.annotations }}
           outputs: type=image,"name=${{ env.IMAGE_NAME }}",push-by-digest=true,name-canonical=true,push=true
 
       - name: Export digest
@@ -159,7 +145,7 @@ jobs:
       - name: Create manifest list and push
         working-directory: /tmp/digests
         run: docker buildx imagetools create $(jq -cr '.tags | map("-t " + .) | join(" ")' <<< "$DOCKER_METADATA_OUTPUT_JSON") \
-          $(printf '${{ env.DOCKERHUB_REPO }}@sha256:%s ' *)
+          $(printf '${{ env.IMAGE_NAME }}@sha256:%s ' *)
 
       - name: Inspect image
-        run: docker buildx imagetools inspect ${{ env.DOCKERHUB_REPO }}:${{ steps.meta.outputs.version }}
+        run: docker buildx imagetools inspect ${{ env.IMAGE_NAME }}:${{ steps.meta.outputs.version }}
