@@ -22,7 +22,7 @@ jobs:
 
     strategy:
       matrix:
-        jdk: [11,17,21]
+        jdk: [11,17]
         platform:
           - linux/amd64
           - linux/arm64
