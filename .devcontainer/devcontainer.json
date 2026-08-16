@@ -1,5 +1,5 @@
 {
-    "name": "Java 21",
+    "name": "Java 17",
     "build": {
         "dockerfile": "Dockerfile",
         "args": {
@@ -17,7 +17,7 @@
         "java.import.gradle.java.home": "/usr/lib/jvm/msopenjdk-current",
         "java.configuration.runtimes": [{
             "default": true,
-            "name": "JavaSE-21",
+            "name": "JavaSE-17",
             "path": "/usr/lib/jvm/msopenjdk-current"
         }]
     },

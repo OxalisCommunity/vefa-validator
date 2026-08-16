@@ -1,9 +1,13 @@
 <assembly>
     <id>full</id>
+    <includeBaseDirectory>false</includeBaseDirectory>
+
     <formats>
         <format>dir</format>
+        <format>tar.gz</format>
+        <format>zip</format>
     </formats>
-    <includeBaseDirectory>false</includeBaseDirectory>
+
     <fileSets>
         <fileSet>
             <directory>src/main/assembly/full</directory>

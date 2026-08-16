@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>validator-parent</artifactId>
-        <groupId>no.difi.vefa</groupId>
+        <artifactId>vefa-validator</artifactId>
+        <groupId>network.oxalis</groupId>
         <version>2.4.1-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
@@ -12,22 +12,30 @@
 
     <scm>
         <tag>HEAD</tag>
-        <url>https://github.com/anskaffelser/vefa-validator</url>
-        <connection>scm:git:https://github.com/anskaffelser/vefa-validator.git</connection>
-        <developerConnection>scm:git:git@github.com:anskaffelser/vefa-validator.git</developerConnection>
+        <url>https://github.com/OxalisCommunity/vefa-validator</url>
+        <connection>scm:git:https://github.com/OxalisCommunity/vefa-validator.git</connection>
+        <developerConnection>scm:git:git@github.com:OxalisCommunity/vefa-validator.git</developerConnection>
     </scm>
 
     <issueManagement>
-        <url>https://github.com/anskaffelser/vefa-validator/issues</url>
+        <url>https://github.com/OxalisCommunity/vefa-validator/issues</url>
         <system>GitHub Issues</system>
     </issueManagement>
 
     <organization>
-        <name>The Norwegian Agency for Public and Financial Management (DFØ)</name>
-        <url>http://www.dfo.no/</url>
+        <name>NorStella</name>
+        <url>https://en.norstella.no/</url>
     </organization>
 
     <developers>
+        <developer>
+            <name>Arun Kumar</name>
+            <email>arun.kaundal@gmail.com</email>
+            <organization>Norstella</organization>
+            <roles>
+                <role>Oxalis Technical Expert</role>
+            </roles>
+        </developer>
         <developer>
             <name>Erlend Klakegg Bergheim</name>
             <email>erlend.klakegg.bergheim@dfo.no</email>
@@ -59,7 +67,7 @@
     <dependencies>
         <!-- VEFA Validator -->
         <dependency>
-            <groupId>no.difi.vefa</groupId>
+            <groupId>network.oxalis</groupId>
             <artifactId>validator-core</artifactId>
         </dependency>
 

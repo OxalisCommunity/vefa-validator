@@ -2,6 +2,11 @@
 
 ## Next release
 
+---
+This repository is a mirror of the upstream project maintained by [anskaffelser](https://github.com/anskaffelser/vefa-validator/).
+All changes after this will be managed by [OxalisCommunity](https://github.com/OxalisCommunity/vefa-validator)
+
+---
 ## 2.4.2
 
 * Fixed outdated default repository URL in `validator-tester` CLI (`vefa.difi.no` → `anskaffelser.dev/repo/validator/current/`). Fixes [#78](https://github.com/anskaffelser/vefa-validator/issues/78).
@@ -106,7 +111,7 @@
 * Better defaults in the sample application (validator-web).
 * ValidatorException is moved from no.difi.vefa.validator to no.difi.vefa.validator.api.
 * Cleaner use of exceptions in exposed classes.
-* Renaming 'Presenter' and associated to 'Renderer' for better communication. 
+* Renaming 'Presenter' and associated to 'Renderer' for better communication.
 * Moving no.difi.vefa.validator.api to module validator-api.
 * More Javadoc in code.
 

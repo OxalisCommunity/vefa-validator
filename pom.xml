@@ -2,33 +2,41 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>no.difi.vefa</groupId>
-    <artifactId>validator-parent</artifactId>
+    <groupId>network.oxalis</groupId>
+    <artifactId>vefa-validator</artifactId>
     <packaging>pom</packaging>
     <version>2.4.1-SNAPSHOT</version>
 
     <name>VEFA Validator :: Parent</name>
     <description>Parent project for VEFA Validator.</description>
-    <url>https://github.com/anskaffelser/vefa-validator</url>
+    <url>https://github.com/OxalisCommunity/vefa-validator</url>
 
     <scm>
         <tag>HEAD</tag>
-        <url>https://github.com/anskaffelser/vefa-validator</url>
-        <connection>scm:git:https://github.com/anskaffelser/vefa-validator.git</connection>
-        <developerConnection>scm:git:git@github.com:anskaffelser/vefa-validator.git</developerConnection>
+        <url>https://github.com/OxalisCommunity/vefa-validator</url>
+        <connection>scm:git:https://github.com/OxalisCommunity/vefa-validator.git</connection>
+        <developerConnection>scm:git:git@github.com:OxalisCommunity/vefa-validator.git</developerConnection>
     </scm>
 
     <issueManagement>
-        <url>https://github.com/anskaffelser/vefa-validator/issues</url>
+        <url>https://github.com/OxalisCommunity/vefa-validator/issues</url>
         <system>GitHub Issues</system>
     </issueManagement>
 
     <organization>
-        <name>The Norwegian Agency for Public and Financial Management (DFØ)</name>
-        <url>http://www.dfo.no/</url>
+        <name>NorStella</name>
+        <url>https://en.norstella.no/</url>
     </organization>
 
     <developers>
+        <developer>
+            <name>Arun Kumar</name>
+            <email>arun.kaundal@gmail.com</email>
+            <organization>Norstella</organization>
+            <roles>
+                <role>Oxalis Technical Expert</role>
+            </roles>
+        </developer>
         <developer>
             <name>Erlend Klakegg Bergheim</name>
             <email>erlend.klakegg.bergheim@dfo.no</email>
@@ -62,8 +70,9 @@
 
     <properties>
         <java.encoding>UTF-8</java.encoding>
-        <java.version>21</java.version>
+        <java.version>17</java.version>
         <slf4j.version>2.0.7</slf4j.version>
+        <vefa-validator.version>2.4.1-SNAPSHOT</vefa-validator.version>
     </properties>
 
     <dependencies>
@@ -94,24 +103,24 @@
         <dependencies>
             <!-- Validator -->
             <dependency>
-                <groupId>no.difi.vefa</groupId>
+                <groupId>network.oxalis</groupId>
                 <artifactId>validator-api</artifactId>
-                <version>2.4.1-SNAPSHOT</version>
+                <version>${vefa-validator.version}</version>
             </dependency>
             <dependency>
-                <groupId>no.difi.vefa</groupId>
+                <groupId>network.oxalis</groupId>
                 <artifactId>validator-build</artifactId>
-                <version>2.4.1-SNAPSHOT</version>
+                <version>${vefa-validator.version}</version>
             </dependency>
             <dependency>
-                <groupId>no.difi.vefa</groupId>
+                <groupId>network.oxalis</groupId>
                 <artifactId>validator-core</artifactId>
-                <version>2.4.1-SNAPSHOT</version>
+                <version>${vefa-validator.version}</version>
             </dependency>
             <dependency>
-                <groupId>no.difi.vefa</groupId>
+                <groupId>network.oxalis</groupId>
                 <artifactId>validator-tester</artifactId>
-                <version>2.4.1-SNAPSHOT</version>
+                <version>${vefa-validator.version}</version>
             </dependency>
 
             <!-- Difi commons -->
@@ -224,6 +233,17 @@
                     <encoding>${java.encoding}</encoding>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>org.sonatype.central</groupId>
+                <artifactId>central-publishing-maven-plugin</artifactId>
+                <version>0.8.0</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <publishingServerId>central</publishingServerId>
+                    <autoPublish>true</autoPublish>
+                    <waitUntil>published</waitUntil>
+                </configuration>
+            </plugin>
         </plugins>
         <pluginManagement>
             <plugins>
@@ -240,7 +260,27 @@
                         <path>/</path>
                     </configuration>
                 </plugin>
-                 <plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-release-plugin</artifactId>
+                    <version>2.5.3</version>
+                    <dependencies>
+                        <dependency>
+                            <groupId>org.apache.maven.scm</groupId>
+                            <artifactId>maven-scm-provider-gitexe</artifactId>
+                            <version>1.13.0</version>
+                        </dependency>
+                        <dependency>
+                            <groupId>org.apache.maven.scm</groupId>
+                            <artifactId>maven-scm-api</artifactId>
+                            <version>1.13.0</version>
+                        </dependency>
+                    </dependencies>
+                    <configuration>
+                        <arguments>-Pdist</arguments>
+                    </configuration>
+                </plugin>
+                <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-javadoc-plugin</artifactId>
                     <version>2.10.3</version>
@@ -299,14 +339,49 @@
             </activation>
             <build>
                 <plugins>
-                    <!-- <plugin>
+                    <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-release-plugin</artifactId>
-                        <version>2.5.2</version>
+                        <artifactId>maven-source-plugin</artifactId>
+                        <version>3.2.1</version>
+                        <executions>
+                            <execution>
+                                <id>attach-sources</id>
+                                <goals>
+                                    <goal>jar-no-fork</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-javadoc-plugin</artifactId>
+                        <version>3.4.1</version>
+                        <executions>
+                            <execution>
+                                <id>attach-javadocs</id>
+                                <goals>
+                                    <goal>jar</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                        <configuration>
+                            <encoding>${java.encoding}</encoding>
+                            <additionalOptions>
+                                <additionalOption>-Xdoclint:none</additionalOption>
+                            </additionalOptions>
+                        </configuration>
                     </plugin>
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-gpg-plugin</artifactId>
+                        <version>3.0.1</version>
+                        <configuration>
+                            <!-- Prevent gpg from using pinentry programs -->
+                            <gpgArguments>
+                                <arg>--pinentry-mode</arg>
+                                <arg>loopback</arg>
+                            </gpgArguments>
+                        </configuration>
                         <executions>
                             <execution>
                                 <id>sign-artifacts</id>
@@ -316,40 +391,9 @@
                                 </goals>
                             </execution>
                         </executions>
-                    </plugin> -->
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-javadoc-plugin</artifactId>
-                    </plugin>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-source-plugin</artifactId>
-                        <version>2.4</version>
-                        <executions>
-                            <execution>
-                                <id>package-sources</id>
-                                <goals>
-                                    <goal>jar</goal>
-                                </goals>
-                            </execution>
-                        </executions>
                     </plugin>
                 </plugins>
             </build>
         </profile>
     </profiles>
-
-    <distributionManagement>
-        <repository>
-            <id>anskaffelser</id>
-            <name>Anskaffelser Maven repository</name>
-            <url>https://maven.pkg.github.com/anskaffelser/maven</url>
-        </repository>
-        <snapshotRepository>
-            <id>anskaffelser</id>
-            <name>Anskaffelser Maven repository</name>
-            <url>https://maven.pkg.github.com/anskaffelser/maven</url>
-        </snapshotRepository>
-    </distributionManagement>
-
 </project>

@@ -1,6 +1,9 @@
 [![GitHub Packages](https://img.shields.io/badge/GitHub%20Packages-2.4.2-blue)](https://github.com/orgs/anskaffelser/packages)
 [![Docker](https://img.shields.io/badge/ghcr.io-anskaffelser%2Fvalidator-blue)](https://ghcr.io/anskaffelser/validator)
+---
+# This repository is a mirror of project maintained by [anskaffelser](https://github.com/anskaffelser/vefa-validator/)
 
+---
 
 # VEFA Validator 2.x
 
@@ -29,13 +32,13 @@ Add this to `~/.m2/settings.xml`:
 
 ```xml
 <settings>
-  <servers>
-    <server>
-      <id>anskaffelser</id>
-      <username>YOUR_GITHUB_USERNAME</username>
-      <password>YOUR_GITHUB_TOKEN</password>
-    </server>
-  </servers>
+    <servers>
+        <server>
+            <id>anskaffelser</id>
+            <username>YOUR_GITHUB_USERNAME</username>
+            <password>YOUR_GITHUB_TOKEN</password>
+        </server>
+    </servers>
 </settings>
 ```
 
@@ -47,16 +50,16 @@ In your `pom.xml`:
 
 ```xml
 <repositories>
-  <repository>
-    <id>anskaffelser</id>
-    <url>https://maven.pkg.github.com/anskaffelser/maven</url>
-  </repository>
+    <repository>
+        <id>anskaffelser</id>
+        <url>https://maven.pkg.github.com/anskaffelser/maven</url>
+    </repository>
 </repositories>
 
 <dependency>
-  <groupId>no.difi.vefa</groupId>
-  <artifactId>validator-core</artifactId>
-  <version>2.4.2</version>
+<groupId>no.difi.vefa</groupId>
+<artifactId>validator-core</artifactId>
+<version>2.4.2</version>
 </dependency>
 ```
 

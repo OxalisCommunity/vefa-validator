@@ -1,5 +1,5 @@
 # See image contents: https://github.com/devcontainers/images/tree/main/src/java
-FROM mcr.microsoft.com/devcontainers/java:1-21-bookworm
+FROM mcr.microsoft.com/devcontainers/java:1-17-bookworm
 
 # [Option] Install Maven
 ARG INSTALL_MAVEN="false"
