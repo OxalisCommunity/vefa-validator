@@ -14,7 +14,7 @@ public class SimplePropertiesTest {
                 .set("some.string", "Hello World!")
                 .set("some.number", 1)
                 .set("some.boolean", true)
-                .set("some.object", new Long(123));
+                .set("some.object", 123L);
 
         assertTrue(properties.contains("some.string"));
         assertTrue(properties.contains("some.number"));

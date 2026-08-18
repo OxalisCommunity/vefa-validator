@@ -19,6 +19,6 @@ public class JAXBHelperTest {
     @Test(expectedExceptions = RuntimeException.class)
     @SuppressWarnings("all")
     public void simpleError() {
-        JAXBHelper.context(null);
+        JAXBHelper.context((Class[]) null);
     }
 }
