@@ -5,14 +5,14 @@
     <groupId>network.oxalis.vefa</groupId>
     <artifactId>vefa-validator</artifactId>
     <packaging>pom</packaging>
-    <version>3.0.0-RC1</version>
+    <version>3.0.0-RC2-SNAPSHOT</version>
 
     <name>VEFA Validator :: Parent</name>
     <description>Parent project for VEFA Validator.</description>
     <url>https://github.com/OxalisCommunity/vefa-validator</url>
 
     <scm>
-        <tag>v3.0.0-RC1</tag>
+        <tag>HEAD</tag>
         <url>https://github.com/OxalisCommunity/vefa-validator</url>
         <connection>scm:git:https://github.com/OxalisCommunity/vefa-validator.git</connection>
         <developerConnection>scm:git:git@github.com:OxalisCommunity/vefa-validator.git</developerConnection>
@@ -72,7 +72,7 @@
         <java.encoding>UTF-8</java.encoding>
         <java.version>17</java.version>
         <slf4j.version>2.0.7</slf4j.version>
-        <vefa-validator.version>3.0.0-RC1</vefa-validator.version>
+        <vefa-validator.version>3.0.0-RC2-SNAPSHOT</vefa-validator.version>
     </properties>
 
     <dependencies>
