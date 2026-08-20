@@ -3,7 +3,7 @@
     <parent>
         <artifactId>vefa-validator</artifactId>
         <groupId>network.oxalis.vefa</groupId>
-        <version>2.4.1-SNAPSHOT</version>
+        <version>3.0.0-RC1</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -14,7 +14,7 @@
     <url>https://github.com/OxalisCommunity/vefa-validator</url>
 
     <scm>
-        <tag>HEAD</tag>
+        <tag>v3.0.0-RC1</tag>
         <url>https://github.com/OxalisCommunity/vefa-validator</url>
         <connection>scm:git:https://github.com/OxalisCommunity/vefa-validator.git</connection>
         <developerConnection>scm:git:git@github.com:OxalisCommunity/vefa-validator.git</developerConnection>
