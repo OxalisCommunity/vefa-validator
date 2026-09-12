@@ -11,17 +11,19 @@ import java.util.List;
 
 /**
  * Defines a repository as source for validation artifacts.
+ * NOTE: URL repository source is No longer supported. In order to load validation rules, use DirectorySource (network.oxalis.vefa.validator.source.DirectorySource)
  */
+@Deprecated
 public class RepositorySource extends AbstractSource {
 
     private List<URI> rootUri;
 
     public static RepositorySource forTest() {
-        return create("https://anskaffelser.dev/repo/validator/draft/");
+        return create("https://oxalis.network/repo/validator/draft/");
     }
 
     public static RepositorySource forProduction() {
-        return create("https://anskaffelser.dev/repo/validator/current/");
+        return create("https://oxalis.network/repo/validator/current/");
     }
 
     public static RepositorySource of(String... uris) {

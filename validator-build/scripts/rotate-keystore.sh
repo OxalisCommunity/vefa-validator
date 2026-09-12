@@ -18,7 +18,7 @@ set -euo pipefail
 DEFAULT_ALIAS="self-signed"
 DEFAULT_STOREPASS="changeit"
 DEFAULT_KEYPASS="changeit"
-DEFAULT_DNAME="CN=VEFA Validator self-signed, O=Anskaffelser.no, C=NO"
+DEFAULT_DNAME="CN=VEFA Validator self-signed, O=Oxalis.network, C=NO"
 DEFAULT_VALIDITY=3650   # 10 years
 DEFAULT_KEYSIZE=2048
 DEFAULT_KEYALG="RSA"
@@ -132,4 +132,3 @@ echo "Next steps:"
 echo "  1. Build dependencies (skip tests):  mvn -pl validator-build -am -DskipTests install --no-transfer-progress"
 echo "  2. Run the validator-build test:     mvn -pl validator-build -Dtest=SimpleProjectTest#simpleWithTests test --no-transfer-progress"
 echo "  3. Commit the new .jks file to the repository."
-echo "  4. Build and publish a new Docker image (anskaffelser/validator:edge) if applicable."

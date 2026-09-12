@@ -13,6 +13,9 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * NOTE: URL repository source is No longer supported. In order to load validation rules, use DirectorySource (network.oxalis.vefa.validator.source.DirectorySource)
+ */
 public class Cli {
 
     public static void main(String... args) throws Exception {
@@ -31,7 +34,7 @@ public class Cli {
         for (String arg : cmd.getArgs())
             testFolders.add(Paths.get(arg));
 
-        String artifacts = cmd.getOptionValue("a", "https://anskaffelser.dev/repo/validator/current/");
+        String artifacts = cmd.getOptionValue("a", "https://oxalis.network/repo/validator/current/");
         List<Validation> validations;
         if (artifacts.startsWith("http"))
             validations = Tester.perform(URI.create(artifacts), testFolders);

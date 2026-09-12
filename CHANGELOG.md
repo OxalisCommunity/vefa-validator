@@ -1,6 +1,6 @@
 # Changelog
 
-## Next release
+## Next release: 3.x
 
 ---
 This repository is a mirror of the upstream project maintained by [anskaffelser](https://github.com/anskaffelser/vefa-validator/).
